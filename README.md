@@ -52,36 +52,46 @@ de la aplicacion mediante servicios SOAP y Rest.
 
 *Lista el lenguaje, framework(s), librerías y herramientas principales utilizados en el proyecto.*
 
-- [Tecnología / lenguaje 1]
-- [Tecnología / framework 2]
-- [Librería o herramienta 3]
-- [...]
+- [Node.js -Entorno de ejecucion del lado del servidor]
+- [NPM -Manejo de dependencias]
+- [Express -Framework para la aplicacion y el API REST]
+- [Jest -Pruebas unitarias]
+- [log4js -Registro de logs y loggins en consola]
+- [ESLint -Quality code y analisis estatico]
+- [Postman -Herramienta para forzar los metodos HTTP, endpoints REST y operaciones SOAP]
+- [supervisor -Refresco en caliente, reinicia el servidor automaticamente al detectar cambios]
+- [soap -Publicacion del servicio soap a traves de un contrato WSDL]
 
 ## Requisitos previos
 
-*Enumera lo que debe tener instalado o configurado quien vaya a ejecutar el proyecto.*
-
-- [Software 1 (versión mínima)]
-- [Software 2]
-- [Cuenta / herramienta externa, si aplica]
+-Node.js 18 o superior
+-NPM 9 o superior, ya incluido en la instalacion de Node.js
+-Git, para clonar el repositorio
 
 ## Instalación
 
-*Indica, paso a paso, cómo obtener el proyecto y dejarlo listo para ejecutarse a partir de una clonación limpia del repositorio.*
+Se clona limpiamente el repositorio remoto de git con estos comandos:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd <NOMBRE_DEL_REPOSITORIO>
-[comando(s) de instalación de dependencias]
+git clone <https://github.com/OsvaExe/Actividad-1-DAW>
+cd <Actividad-1-DAW>
+[npm install]
 ```
 
 ## Ejecución
 
-*Indica el o los comandos necesarios para poner en marcha el proyecto y cómo acceder a él una vez iniciado (por ejemplo, puerto, URL local o forma de uso).*
+Para iniciar el servidor:
 
 ```bash
-[comando de ejecución]
+[npm run dev]
 ```
+El servidor se encuentra en `http://localhost:3000`
+| Interfaz | Dirección |
+|---|---|
+| API REST | `http://localhost:3000/api/tasks` |
+| Servicio SOAP | `http://localhost:3000/wsdl` |
+| Contrato WSDL | `http://localhost:3000/wsdl?wsdl` |
+
 
 ## Scripts / comandos disponibles
 
@@ -89,12 +99,63 @@ cd <NOMBRE_DEL_REPOSITORIO>
 
 | Comando | Descripción |
 |---|---|
-| `[comando 1]` | [Qué hace] |
-| `[comando 2]` | [Qué hace] |
+| `npm run dev` | Inicia el servidor mediante Supervisor, reiniciándolo de forma automática ante cualquier cambio en el código fuente. Pensado para el desarrollo. |
+| `npm test` | Ejecuta las pruebas unitarias con Jest sobre la lógica de administración de tareas. |
+| `npm run lint` | Ejecuta ESLint sobre el proyecto para detectar errores y problemas de estilo en el código. |
+
 
 ## Funcionalidades / uso
 
-*Describe las funcionalidades principales del proyecto y, si aplica, cómo probarlas (interfaces, endpoints, operaciones, pantallas, etc., según corresponda al tipo de práctica).*
+La aplicacion administra las tareas creadas y guardadas en memoria mediante dos interfaces que reutilizan la misma logica de `taskService`: *REST* y *SOAP*.
+
+# API REST
+ 
+| Método | Endpoint | Descripción | Cuerpo de la petición |
+|---|---|---|---|
+| `GET` | `/api/tasks` | Devuelve la lista completa de tareas. | — |
+| `GET` | `/api/tasks/:id` | Devuelve una tarea específica por su identificador. | — |
+| `POST` | `/api/tasks` | Crea una nueva tarea y devuelve la tarea creada. | `{ "title": "..." }` |
+| `PUT` | `/api/tasks/:id` | Modifica el título, el estado o ambos de una tarea existente. | `{ "title": "...", "completed": true }` |
+| `DELETE` | `/api/tasks/:id` | Elimina una tarea y devuelve la tarea eliminada. | — |
+ 
+**Prueba con Postman.** Configura las peticiones con el encabezado
+`Content-Type: application/json` y el cuerpo en formato *raw / JSON*. Por ejemplo,
+para crear una tarea:
+ 
+```
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+ 
+{ "title": "Estudiar Node.js" }
+```
+ 
+La respuesta será la tarea creada con código de estado `201 Created`. En el `PUT`
+pueden enviarse únicamente los campos que se desean modificar; los campos ausentes
+conservan su valor anterior.
+ 
+### Servicio SOAP
+ 
+El servicio SOAP reutiliza la misma lógica de negocio que la API REST y se define
+mediante el contrato `src/soap/taskService.wsdl`. Expone dos operaciones:
+ 
+| Operación | Descripción |
+|---|---|
+| `GetTasks` | Devuelve la lista completa de tareas. |
+| `AddTask` | Crea una nueva tarea a partir de un título y devuelve la tarea creada. |
+ 
+**Prueba con Postman.** Envía una petición `POST` a `http://localhost:3000/wsdl` con
+el encabezado `Content-Type: text/xml` y el cuerpo en formato *raw / XML*.
+
+Dado que ambas interfaces comparten la capa `taskService`, una tarea creada mediante
+SOAP aparece inmediatamente al consultar `GET /api/tasks`, y viceversa.
+
+### Registro de eventos
+ 
+La aplicación utiliza Log4js en lugar de `console.log()`. Los eventos se escriben
+simultáneamente en la consola y en el archivo `logs/app.log`, que se genera de forma
+automática en la primera ejecución. Se registran el inicio del servidor, la creación,
+modificación y eliminación de tareas, las operaciones SOAP y las rutas no encontradas.
+
 
 ## Pruebas
 
