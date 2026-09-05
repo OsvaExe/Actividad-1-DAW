@@ -16,13 +16,13 @@
 |---|---|
 | **Universidad** | Universidad Autónoma de Chihuahua |
 | **Facultad** | Facultad de Ingeniería |
-| **Carrera** | [Ingeniería en Computación] |
-| **Materia** | [Nombre de la asignatura] |
-| **Docente** | [Nombre del docente] |
-| **Actividad** | [Tarea X. Nombre de la actividad] |
-| **Alumno** | [Nombre completo del alumno] |
-| **Matrícula** | [000000] |
-| **Fecha de entrega** | [dd/mm/aaaa] |
+| **Carrera** | Ingeniería en Computación |
+| **Materia** | Desarrollo de Aplicaciones Web |
+| **Docente** | Matro. Luis Antonio Ramirez Martinez |
+| **Actividad** | Tarea 3. Desarrollo de servicios web con Node.js |
+| **Alumno** | Osvaldo Hernandez Juarez |
+| **Matrícula** | 385493 |
+| **Fecha de entrega** | 04/09/2026 |
 
 ## Descripción
 
