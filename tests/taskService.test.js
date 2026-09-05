@@ -4,7 +4,7 @@ describe('taskService', ()=>{
 
     beforeEach(()=>{
         taskService = require('../src/services/taskService');
-        jest.resetModules
+        jest.resetModules();
     });
 
     test('crear una tarea', ()=>{

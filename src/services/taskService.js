@@ -40,7 +40,7 @@ function updateTask(id, updates = {}) {
 
 function deleteTask(id) {
     const taskToDelete = getTaskById(id); //se puede reemplazar con el getTaskById(id)
-    tasks.splice(tasks.indexOf(taskToDelete.id), 1);
+    tasks.splice(tasks.indexOf(taskToDelete.id, 1));
     return taskToDelete;
 }
 

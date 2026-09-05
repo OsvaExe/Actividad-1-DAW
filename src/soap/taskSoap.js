@@ -4,10 +4,10 @@ const logger = require('../utils/logger');
 module.exports = {
     TaskService: {
         TaskServicePort: {
-            GetTask(args, callback){
+            GetTasks(args, callback){
                 const tasks = taskService.getTask();
                 logger.info("Lista de tareas enviadas en soap");
-                callback({tasks: tasks})
+                callback({task: tasks})
             },
             AddTask(args, callback){
                 const task = taskService.createTask(args.title);
