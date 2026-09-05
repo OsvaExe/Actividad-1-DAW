@@ -26,7 +26,7 @@
 
 ## Descripción
 
-*Aplicación web de gestión de tareas (TODO List) desarrollada con Node.js y Express.
+Aplicación web de gestión de tareas (TODO List) desarrollada con Node.js y Express.
 Permite administrar una colección de tareas —crearlas, consultarlas, modificarlas y
 eliminarlas— donde cada tarea cuenta con un identificador, un título y un estado que
 indica si está pendiente o completada. La información se almacena en memoria durante
@@ -40,11 +40,13 @@ sistemas sobre una misma base de código.
 
 El proyecto integra además herramientas propias del flujo de desarrollo en Node.js:
 registro de eventos con Log4js, reinicio automático durante el desarrollo con Supervisor,
-análisis estático de código con ESLint y pruebas unitarias con Jest.*
+análisis estático de código con ESLint y pruebas unitarias con Jest.
 
 ## Objetivo
 
-*Describe el objetivo académico de la actividad: qué se busca aplicar o demostrar con este entregable.*
+Desarrollar una aplicacion web basica para gestionar tareas (TODO List) utilizando Node.js,
+NPM y Express, permitiendo aplicar conceptos fundamentales de la administracion de paquetes y exponer funcionalidades
+de la aplicacion mediante servicios SOAP y Rest.
 
 ## Tecnologías utilizadas
 
