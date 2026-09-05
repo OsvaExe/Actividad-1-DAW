@@ -10,11 +10,12 @@
   "license": "ISC",
   "author": "Osvaldo Hernandez Juarez",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "dev": "supervisor src/app.js",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "start": "node src/app.js"
   },
   "dependencies": {
     "express": "^5.2.1",

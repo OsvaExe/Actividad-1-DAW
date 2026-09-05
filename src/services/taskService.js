@@ -32,8 +32,7 @@ function updateTask(id, updates = {}) {
     if(updates.completed != undefined) {
         taskToUpdate.completed = updates.completed;
     }
-    tasks = tasks.splice(id, 1);
-    tasks.push(taskToUpdate);
+    
     return taskToUpdate;
 }
 
