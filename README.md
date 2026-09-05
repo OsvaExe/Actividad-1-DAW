@@ -108,7 +108,7 @@ El servidor se encuentra en `http://localhost:3000`
 
 La aplicacion administra las tareas creadas y guardadas en memoria mediante dos interfaces que reutilizan la misma logica de `taskService`: *REST* y *SOAP*.
 
-# API REST
+### API REST
  
 | Método | Endpoint | Descripción | Cuerpo de la petición |
 |---|---|---|---|
