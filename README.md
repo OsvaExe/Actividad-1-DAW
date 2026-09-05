@@ -159,23 +159,62 @@ modificación y eliminación de tareas, las operaciones SOAP y las rutas no enco
 
 ## Pruebas
 
-*(Sección opcional — inclúyela si la práctica requiere pruebas.)* Describe cómo ejecutar las pruebas y qué cubren.
+Las pruebas unitarias se implementaron con Jest sobre `taskService`, que concentra la
+lógica de administración de tareas compartida por REST y SOAP. Para ejecutarlas:
+ 
+```bash
+npm test
+```
+ 
+Se cubren las cuatro operaciones principales:
+ 
+| Prueba | Verifica |
+|---|---|
+| Crear una tarea | Que la tarea se cree con el título indicado, con `completed` en `false` y con un identificador asignado. |
+| Consultar las tareas | Que la lista devuelta contenga las tareas registradas. |
+| Modificar una tarea | Que el cambio de estado se aplique correctamente sobre la tarea solicitada. |
+| Eliminar una tarea | Que la tarea se retire de la colección. |
+ 
+Antes de cada prueba se reinicia el módulo con `jest.resetModules()`, de modo que cada
+caso comience con una colección de tareas vacía y las pruebas no se afecten entre sí.
+
 
 ## Análisis de calidad de código
 
-*(Sección opcional — inclúyela si la práctica requiere herramientas de análisis estático.)* Describe cómo ejecutarlo.
+El proyecto utiliza ESLint con la configuración definida en `eslint.config.js`, basada
+en las reglas recomendadas de `@eslint/js`. La configuración declara los globales de
+CommonJS para el código fuente, añade los globales propios de Jest para los archivos de
+`tests/` y excluye del análisis las carpetas `node_modules/` y `logs/`.
+ 
+```bash
+npm run lint
+```
 
 ## Estructura general del proyecto
 
-*Presenta brevemente cómo está organizado el código fuente.*
-
 ```text
-proyecto/
-|-- [carpeta o archivo]
-|-- [carpeta o archivo]
+Actividad-1-DAW/
+|-- logs/
+|-- src/
+|   |-- routes/
+|   |   `-- tasks.js
+|   |-- services/
+|   |   `-- taskService.js
+|   |-- soap/ 
+|   |   `-- taskService.wsdl
+        |-- taskSoap.js
+|   `-- utils/
+|       `-- logger.js
+    |-- app.js
+|-- tests/
+|   `-- taskService.test.js
+|-- .gitignore
+|-- eslint.config.js
+|-- package-lock.json
+|-- package.json
 `-- README.md
 ```
 
 ## Autor
 
-[Nombre completo del alumno] — [Matrícula]
+Osvaldo Hernández Juárez — *385493*
